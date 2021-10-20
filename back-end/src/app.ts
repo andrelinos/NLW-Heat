@@ -7,14 +7,16 @@ import cors from 'cors';
 import { router } from './routes';
 
 const app = express();
+app.use(cors());
 
 const serverHttp = http.createServer(app);
 
 const io = new Server(serverHttp, {
-    cors: {
-        origin: '*'
-    }
+  cors: {
+    origin: "any",
+  },
 });
+
 
 io.on('connection', (socket) => {
     console.log(`Usuário conectado no socket ${socket.id}`);

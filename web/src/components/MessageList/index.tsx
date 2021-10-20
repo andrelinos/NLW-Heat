@@ -1,68 +1,54 @@
-import styles from './styles.module.scss';
+import { useEffect, useState } from 'react';
+
 import { api } from '../../services/api';
 
+import styles from './styles.module.scss';
+
 import logoImg from '../../assets/logo.svg';
-import { useEffect } from 'react';
+
+interface UserProps {
+    name: string;
+    avatar_url: string;
+}
+
+interface MessageProps {
+    id: string;
+    text: string;
+    user: UserProps;
+}
 
 export function MessageList() {
+    const [messages, setMessages] = useState<MessageProps[]>([]);
 
-  useEffect(() => {
-    api.get('messages').then((response) => {
-      console.log(response.data)
-    })
-  },[])
+    useEffect(() => {
+        api.get<MessageProps[]>('messages/last3').then((response) => {
+            setMessages(response.data);
+        });
+    }, []);
 
     return (
         <div className={styles.messageListWrapper}>
             <img src={logoImg} alt="DoWhile 2021" />
 
             <ul className={styles.messageList}>
-                <li className={styles.message}>
-                    <p className={styles.messageContainer}>
-                        lorem ipsum dolor sit amet, consect lorem ipsum dolor
-                        sit amet
-                    </p>
-                    <div className={styles.messageUser}>
-                        <div className={styles.userImage}>
-                            <img
-                                src="https://github.com/andrelinos.png"
-                                alt="Andrelino Silva"
-                            />
-                        </div>
-                        <span>Andrelino Silva</span>
-                    </div>
-                </li>
-
-                <li className={styles.message}>
-                    <p className={styles.messageContainer}>
-                        lorem ipsum dolor sit amet, consect lorem ipsum dolor
-                        sit amet
-                    </p>
-                    <div className={styles.messageUser}>
-                        <div className={styles.userImage}>
-                            <img
-                                src="https://github.com/andrelinos.png"
-                                alt="Andrelino Silva"
-                            />
-                        </div>
-                        <span>Andrelino Silva</span>
-                    </div>
-                </li>
-                <li className={styles.message}>
-                    <p className={styles.messageContainer}>
-                        lorem ipsum dolor sit amet, consect lorem ipsum dolor
-                        sit amet
-                    </p>
-                    <div className={styles.messageUser}>
-                        <div className={styles.userImage}>
-                            <img
-                                src="https://github.com/andrelinos.png"
-                                alt="Andrelino Silva"
-                            />
-                        </div>
-                        <span>Andrelino Silva</span>
-                    </div>
-                </li>
+                {messages.map((message) => {
+                    return (
+                        <li key={message.id} className={styles.message}>
+                            <p className={styles.messageContent}>
+                                {message.text}
+                            </p>
+                            <div className={styles.messageUser}>
+                                <div className={styles.userImage}>
+                                    <img
+                                        src={message.user.avatar_url}
+                                        alt={message.user.name}
+                                    />
+                                </div>
+                                <span>{message.user.name}</span>
+                            </div>
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );
