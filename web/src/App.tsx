@@ -1,16 +1,18 @@
-import {MessageList} from './components/MessageList'
+import { MessageList } from './components/MessageList';
 
-import styles from './App.module.scss'
-import { LoginBox } from './components/LoginBox'
+import { LoginBox } from './components/LoginBox';
+import { useContext } from 'react';
+import { AuthContext } from './context/auth';
+
+import styles from './App.module.scss';
+import { SendMessageForm } from './components/SendMessageForm';
 
 export function App() {
-
-  return (
-    <main className={styles.contentWrapper}>
-      <MessageList />
-      <LoginBox />
-    </main>
-  )
+    const { user } = useContext(AuthContext);
+    return (
+        <main className={styles.contentWrapper}>
+            <MessageList />
+            {!!user ? <SendMessageForm /> : <LoginBox />}
+        </main>
+    );
 }
-
-
