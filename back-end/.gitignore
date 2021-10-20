@@ -109,5 +109,4 @@ dist
 # Prisma
 .db
 .sql
-.toml
-*_*/
+migrations
