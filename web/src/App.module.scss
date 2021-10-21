@@ -8,3 +8,14 @@
   column-gap: 120px;
   position: relative;
 }
+
+.contentSigned::before {
+  content: '';
+  width: 420px;
+  height: 100vh;
+  background: url('./assets/background.svg') no-repeat;
+  background-size: cover;
+  position: absolute;
+  right: -200px;
+  top: 0;
+}

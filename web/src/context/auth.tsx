@@ -39,6 +39,8 @@ export function AuthProvider(props: AuthProviderProps) {
 
         localStorage.setItem('@dowhile2021:token', token);
 
+        api.defaults.headers.common.authorization = `Bearer ${token}`;
+
         setUser(user);
     }
 
@@ -52,6 +54,7 @@ export function AuthProvider(props: AuthProviderProps) {
 
         if (token) {
             api.defaults.headers.common.authorization = `Bearer ${token}`;
+
             api.get<UserProps>('profile').then((response) => {
                 setUser(response.data);
             });

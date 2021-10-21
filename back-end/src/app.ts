@@ -12,11 +12,10 @@ app.use(cors());
 const serverHttp = http.createServer(app);
 
 const io = new Server(serverHttp, {
-  cors: {
-    origin: "any",
-  },
+    cors: {
+        origin: '*'
+    }
 });
-
 
 io.on('connection', (socket) => {
     console.log(`Usuário conectado no socket ${socket.id}`);
