@@ -1,5 +1,6 @@
 import { FormEvent, useContext, useState } from 'react';
 import { VscGithubInverted, VscSignOut } from 'react-icons/vsc';
+
 import { AuthContext } from '../../context/auth';
 import { api } from '../../services/api';
 

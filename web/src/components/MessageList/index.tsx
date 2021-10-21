@@ -20,14 +20,14 @@ interface MessageProps {
 
 let messagesQueue: MessageProps[] = [];
 
+const socket = io('http://localhost:4000');
+
+socket.on('new_message', (newMessage) => {
+    messagesQueue.push(newMessage);
+});
+
 export function MessageList() {
     const [messages, setMessages] = useState<MessageProps[]>([]);
-
-    const socket = io('http://localhost:4000');
-
-    socket.on('new_message', (newMessage) => {
-        messagesQueue.push(newMessage);
-    });
 
     useEffect(() => {
         const timer = setInterval(() => {
