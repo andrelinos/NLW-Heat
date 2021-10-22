@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, LogoutButton, LogoutTitle } from './styles';
+import { Container, UserInfoContainer, LogoutButton, LogoutTitle } from './styles';
 
 import { UserPhoto } from '../UserPhoto';
 
@@ -10,10 +10,12 @@ export function Header() {
     return (
         <Container>
             <LogoSvg />
-            <UserPhoto imageUri='https://github.com/andrelinos.png' />
-            <LogoutButton>
-                <LogoutTitle>Sair</LogoutTitle>
-            </LogoutButton>
+            <UserInfoContainer>
+                <LogoutButton>
+                    <LogoutTitle>Sair</LogoutTitle>
+                </LogoutButton>
+                <UserPhoto imageUri="https://github.com/andrelinos.png" />
+            </UserInfoContainer>
         </Container>
     );
 }

@@ -1,0 +1,14 @@
+import styled from 'styled-components/native';
+import { ScrollView } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
+
+export const Container = styled.View``;
+export const ContainerScrollView = styled(ScrollView).attrs({
+    contentContainerStyle: {
+        paddingTop: RFValue(135),
+        paddingBottom: RFValue(184)
+    },
+    keyboardShouldPersistTaps: 'never'
+})`
+    padding: ${RFValue(20)}px;
+`;

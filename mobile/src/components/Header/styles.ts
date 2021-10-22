@@ -13,7 +13,14 @@ export const Container = styled.View`
     background-color: ${COLORS.BLACK_SECONDARY};
 `;
 
-export const LogoutButton = styled(TouchableOpacity)``;
+export const UserInfoContainer = styled.View`
+    flex-direction: row;
+    align-items: center;
+`;
+
+export const LogoutButton = styled(TouchableOpacity)`
+    margin-right: ${RFValue(16)}px;
+`;
 
 export const LogoutTitle = styled.Text`
     font-size: ${RFValue(15)}px;

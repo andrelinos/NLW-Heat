@@ -1,10 +1,10 @@
 import React from 'react';
-import { Image } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import { Avatar } from './styles';
+import { AvatarContainer, Avatar } from './styles';
 
 import avatarImg from '../../assets/avatar.png';
+import { COLORS } from '../../theme';
 
 const SIZES = {
     SMALL: {
@@ -28,13 +28,24 @@ export function UserPhoto({ imageUri, sizes = 'NORMAL' }: AvatarProps) {
     const { containerSize, avatarSize } = SIZES[sizes];
 
     return (
-        <Avatar
+        <AvatarContainer
+            colors={[COLORS.PINK, COLORS.YELLOW]}
+            start={{ x: 0, y: 0.8 }}
+            end={{ x: 0.9, y: 1 }}
             style={{
-                width: avatarSize,
-                height: avatarSize
+                width: containerSize,
+                height: containerSize,
+                borderRadius: containerSize / 2
             }}
-            source={{ uri: imageUri || AVATAR_DEFAULT }}
-            borderRadius={avatarSize / 2}
-        />
+        >
+            <Avatar
+                style={{
+                    width: avatarSize,
+                    height: avatarSize,
+                    borderRadius: avatarSize / 2
+                }}
+                source={{ uri: imageUri || AVATAR_DEFAULT }}
+            />
+        </AvatarContainer>
     );
 }
