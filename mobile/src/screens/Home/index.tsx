@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Header } from '../../components/Header';
 import { MessageList } from '../../components/MessageList';
 import { SendMessageForm } from '../../components/SendMessageForm';
@@ -10,12 +11,13 @@ import { Container, ListContainer } from './styles';
 export function Home() {
     const { user } = useAuth();
     return (
-        <Container>
-            <Header />
-            <ListContainer>
-                <MessageList />
-            </ListContainer>
-            {user ? <SendMessageForm /> : <SignInBox />}
-        </Container>
+            <Container>
+                <Header />
+                <ListContainer>
+                    <MessageList />
+                </ListContainer>
+                {user ? <SendMessageForm /> : <SignInBox />}
+            </Container>
+
     );
 }

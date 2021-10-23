@@ -1,10 +1,13 @@
 import { getBottomSpace } from 'react-native-iphone-x-helper';
+import { KeyboardAvoidingView, Platform } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
 import { COLORS } from '../../theme';
 
-export const Container = styled.View`
+export const Container = styled(KeyboardAvoidingView).attrs({
+    behavior: Platform.OS === 'ios' ? 'padding' : undefined
+})`
     flex: 1;
     background-color: ${COLORS.BLACK_SECONDARY};
 `;

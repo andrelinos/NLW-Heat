@@ -28,7 +28,9 @@ export const AuthContext = createContext({} as AuthContextData);
 export function AuthProvider(props: AuthProviderProps) {
     const [user, setUser] = useState<UserProps | null>(null);
 
-    const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=75eed3cef9f613b4ac91`;
+    const CLIENT_ID = process.env.GITHUB_CLIENT_ID;
+
+    const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=${CLIENT_ID}`;
 
     async function signIn(githubCode: string) {
         const response = await api.post<AuthResponseProps>('authenticate', {
@@ -36,6 +38,8 @@ export function AuthProvider(props: AuthProviderProps) {
         });
 
         const { token, user } = response.data;
+
+        console.log(response.data);
 
         localStorage.setItem('@dowhile2021:token', token);
 

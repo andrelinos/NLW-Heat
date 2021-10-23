@@ -10,6 +10,7 @@ import {
 } from 'react-native-dotenv';
 
 import { api } from '../services/api';
+import { Alert } from 'react-native';
 
 interface UserProps {
     id: string;
@@ -48,8 +49,6 @@ function AuthProvider({ children }: AuthProviderProps) {
     const [isSignIng, setIsSignIng] = useState(true);
     const [user, setUser] = useState<UserProps | null>(null);
 
-    console.log(user)
-
     async function signIn() {
         try {
             const authUrl = `${GITHUB_AUTH_URL}?client_id=${GITHUB_CLIENT_ID}&scope=${GITHUB_SCOPE}`;
@@ -73,22 +72,24 @@ function AuthProvider({ children }: AuthProviderProps) {
                 ] = `Bearer ${token}`;
 
                 await AsyncStorage.setItem(USER_STORAGE, JSON.stringify(user));
-                await AsyncStorage.setItem(
-                    TOKEN_STORAGE,
-                    JSON.stringify(token)
-                );
+                await AsyncStorage.setItem(TOKEN_STORAGE, token);
 
                 setUser(user);
             }
         } catch (error) {
-            console.log(error);
+            Alert.alert('Ocorreu um erro inesperado, tente novamente.');
         } finally {
             setIsSignIng(false);
         }
 
         setIsSignIng(false);
     }
-    async function signOut() {}
+
+    async function signOut() {
+        setUser(null);
+        await AsyncStorage.removeItem(USER_STORAGE);
+        await AsyncStorage.removeItem(TOKEN_STORAGE);
+    }
 
     async function loadUserStorageData() {
         const userStorage = await AsyncStorage.getItem(USER_STORAGE);
