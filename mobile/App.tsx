@@ -1,9 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import {
-    getStatusBarHeight,
-    getBottomSpace
-} from 'react-native-iphone-x-helper';
+
 import {
     useFonts,
     Roboto_400Regular,
@@ -13,6 +10,7 @@ import AppLoading from 'expo-app-loading';
 
 import { Home } from './src/screens/Home';
 import { ContainerApp } from './src/styles/app';
+import { AuthProvider } from './src/hooks/auth';
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -25,9 +23,15 @@ export default function App() {
     }
 
     return (
-        <ContainerApp>
-            <StatusBar style={'light'} />
-            <Home />
-        </ContainerApp>
+        <AuthProvider>
+            <ContainerApp>
+                <StatusBar
+                    style="light"
+                    translucent
+                    backgroundColor="transparent"
+                />
+                <Home />
+            </ContainerApp>
+        </AuthProvider>
     );
 }

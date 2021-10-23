@@ -1,8 +1,9 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "nlwhapp",
+    "slug": "nlwhapp",
     "version": "1.0.0",
+    "scheme": "nlwhapp",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -13,7 +14,7 @@
       "**/*"
     ]
   },
-  "name": "mobile",
+  "name": "nlwhapp",
   "android": {
     "adaptiveIcon": {
       "foregroundImage": "./assets/adaptive-icon.png",
