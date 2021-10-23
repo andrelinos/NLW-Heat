@@ -5,8 +5,10 @@ import { Container, UserInfoContainer, LogoutButton, LogoutTitle } from './style
 import { UserPhoto } from '../UserPhoto';
 
 import LogoSvg from '../../assets/logo.svg';
+import { useAuth } from '../../hooks/auth';
 
 export function Header() {
+    const { user } = useAuth();
     return (
         <Container>
             <LogoSvg />
@@ -14,7 +16,7 @@ export function Header() {
                 <LogoutButton>
                     <LogoutTitle>Sair</LogoutTitle>
                 </LogoutButton>
-                <UserPhoto imageUri="https://github.com/andrelinos.png" />
+                <UserPhoto imageUri={user?.avatar_url} />
             </UserInfoContainer>
         </Container>
     );

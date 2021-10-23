@@ -6,7 +6,7 @@ import { Button } from '../Button';
 import { Container } from './styles';
 
 export function SignInBox() {
-    const { signIn } = useAuth();
+    const { signIn, isSignIng } = useAuth();
 
     return (
         <Container>
@@ -16,6 +16,7 @@ export function SignInBox() {
                 backgroundColor={COLORS.YELLOW}
                 icon="github"
                 onPress={signIn}
+                isLoading={isSignIng}
             />
         </Container>
     );
