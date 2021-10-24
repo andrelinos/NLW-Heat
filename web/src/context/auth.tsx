@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
+
 import { api } from '../services/api';
 
 interface UserProps {
@@ -28,9 +29,11 @@ export const AuthContext = createContext({} as AuthContextData);
 export function AuthProvider(props: AuthProviderProps) {
     const [user, setUser] = useState<UserProps | null>(null);
 
-    const CLIENT_ID = process.env.GITHUB_CLIENT_ID;
+    const CLIENT_ID = process.env.VITE_GITHUB_CLIENT_ID;
+    console.log(CLIENT_ID)
 
     const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=${CLIENT_ID}`;
+    console.log(signInUrl);
 
     async function signIn(githubCode: string) {
         const response = await api.post<AuthResponseProps>('authenticate', {
