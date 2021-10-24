@@ -120,3 +120,8 @@ node_modules
 dist
 dist-ssr
 
+# Others
+.env
+.env.*
+
+yarn.lock
