@@ -30,10 +30,13 @@ export function AuthProvider(props: AuthProviderProps) {
     const [user, setUser] = useState<UserProps | null>(null);
 
     const CLIENT_ID = process.env.VITE_GITHUB_CLIENT_ID;
-    console.log(CLIENT_ID)
+    const VITE_GITHUB_AUTH_URL = process.env.VITE_GITHUB_AUTH_URL;
 
-    const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=${CLIENT_ID}`;
-    console.log(signInUrl);
+    
+    const signInUrl = `${VITE_GITHUB_AUTH_URL}?scope=user&client_id=${CLIENT_ID}`;
+    console.log('URL:', {signInUrl});
+
+    console.log(user);
 
     async function signIn(githubCode: string) {
         const response = await api.post<AuthResponseProps>('authenticate', {

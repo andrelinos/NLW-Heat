@@ -34,6 +34,8 @@ app.get('/github', (request, response) => {
 app.get('/signin/callback', (request, response) => {
     const { code } = request.query;
 
+    console.log(code)
+
     return response.json(code);
 });
 

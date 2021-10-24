@@ -7,8 +7,8 @@ dotenv.config();
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/web/",
   define: {
-    'process.env.VITE_GITHUB_CLIENT_ID': `"${process.env.VITE_GITHUB_CLIENT_ID}"`
+    'process.env.VITE_GITHUB_CLIENT_ID': `"${process.env.VITE_GITHUB_CLIENT_ID}"`,
+    'process.env.VITE_GITHUB_AUTH_URL': `"${process.env.VITE_GITHUB_AUTH_URL}"`,
     }
 });
